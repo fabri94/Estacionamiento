@@ -34,9 +34,9 @@ public class Auto extends Vehiculo implements ICobrable{
     public String toString() {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("Auto \n");
+        sb.append("Auto\n");
         sb.append(super.toString());
-        sb.append("Cantidad puertas = ").append(cantidadPuertas);
+        sb.append(", Cantidad puertas = ").append(cantidadPuertas);
         return sb.toString();
     }  
     

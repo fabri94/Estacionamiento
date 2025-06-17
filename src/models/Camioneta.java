@@ -32,9 +32,9 @@ public class Camioneta extends Vehiculo implements ICobrable{
     public String toString() {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("Camioneta \n");
+        sb.append("Camioneta\n");
         sb.append(super.toString());
-        sb.append("Capacidad de carga = ").append(capacidadCarga);
+        sb.append(", Capacidad de carga = ").append(capacidadCarga);
         return sb.toString();
     }  
     

@@ -32,9 +32,9 @@ public class Moto extends Vehiculo implements ICobrable{
     public String toString() {
         StringBuilder sb = new StringBuilder();
         
-        sb.append("Moto \n");
+        sb.append("Moto\n");
         sb.append(super.toString());
-        sb.append("Cilindrada = ").append(cilindrada);
+        sb.append(", Cilindrada = ").append(cilindrada);
         return sb.toString();
     }  
     
