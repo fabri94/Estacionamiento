@@ -12,7 +12,8 @@ public class Vehiculo {
     private String modelo;
     private int cantidadHoras;
     private double precioPorHora;
-
+    //private static final int CANTIDAD_COLUMNAS_CSV = 5;
+    
     public Vehiculo(String patente, String marca, String modelo, int cantidadHoras, double precioPorHora) {
         this.patente = patente;
         this.marca = marca;
@@ -84,5 +85,22 @@ public class Vehiculo {
         return sb.toString();
     }
     
+    //ESTE PUEDE SER EL TOSTRING DEL PARCIAL
+    public String toCSV(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.patente).append(",");
+        sb.append(this.marca).append(",");
+        sb.append(this.modelo).append(",");
+        sb.append(this.cantidadHoras).append(",");
+        sb.append(this.precioPorHora).append(",");
+        return sb.toString();
+    }
     
+    /*public static Vehiculo fromCSV(String[] columnas){
+        Vehiculo vehiculoLeido = null;
+        if(columnas.length==CANTIDAD_COLUMNAS_CSV){
+            vehiculoLeido = new Vehiculo(columnas[0],columnas[1],columnas[2],Integer.parseInt(columnas[3]),Double.parsedouble(columnas[4]));
+        }
+        return vehiculoLeido;
+    }*/
 }

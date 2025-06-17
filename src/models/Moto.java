@@ -8,7 +8,8 @@ import interfaces.ICobrable;
  */
 public class Moto extends Vehiculo implements ICobrable{
     private int cilindrada;
-
+    //private static final int CANTIDAD_COLUMNAS_CSV = 7;
+    
     public Moto(String patente, String marca, String modelo, int cantidadHoras, double precioPorHora) {
         super(patente, marca, modelo, cantidadHoras, precioPorHora);
     }
@@ -17,6 +18,15 @@ public class Moto extends Vehiculo implements ICobrable{
         this(patente,marca,modelo,cantidadHoras,precioPorHora);
         this.cilindrada = cilindrada;
     }
+
+    public void setCilindrada(int cilindrada) {
+        this.cilindrada = cilindrada;
+    }
+
+    public int getCilindrada() {
+        return cilindrada;
+    }
+    
 
     @Override
     public String toString() {
@@ -40,5 +50,19 @@ public class Moto extends Vehiculo implements ICobrable{
         return valorIncrementado;
     }
     
+    @Override
+    public String toCSV(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.toCSV());
+        sb.append("Precio total ").append(this.calcularPrecio()).append(",").append(getClass().getSimpleName());
+        return sb.toString();
+    }
     
+    /*public static Moto fromCSV(String[] columnas){
+        Moto motoLeida = null;
+        if(columnas.length == CANTIDAD_COLUMNAS_CSV){
+            motoLeida = new Moto(columnas[0],columnas[1],columnas[2],Integer.parseInt(columnas[3]),Integer.parseInt(columnas[4]));
+        }
+        return motoLeida;
+    }*/
 }
