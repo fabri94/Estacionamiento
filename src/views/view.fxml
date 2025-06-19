@@ -11,15 +11,15 @@
       <Pane layoutX="7.0" layoutY="11.0" prefHeight="380.0" prefWidth="797.0">
          <children>
             <ListView fx:id="listViewVehiculos" layoutY="-1.0" prefHeight="330.0" prefWidth="797.0" />
-            <Button fx:id="btnAgregar" layoutX="14.0" layoutY="329.0" mnemonicParsing="false" onAction="#agregar" prefHeight="49.0" prefWidth="107.0" text="Agregar">
+            <Button fx:id="btnAgregar" layoutX="14.0" layoutY="329.0" mnemonicParsing="false" onAction="#agregarVehiculo" prefHeight="49.0" prefWidth="107.0" text="Agregar">
                <font>
                   <Font name="Monospaced Regular" size="14.0" />
                </font></Button>
-            <Button fx:id="btnModificar" layoutX="345.0" layoutY="329.0" mnemonicParsing="false" onAction="#modificar" prefHeight="49.0" prefWidth="107.0" text="Modificar">
+            <Button fx:id="btnModificar" layoutX="345.0" layoutY="329.0" mnemonicParsing="false" onAction="#modificarVehiculo" prefHeight="49.0" prefWidth="107.0" text="Modificar">
                <font>
                   <Font name="Monospaced Regular" size="14.0" />
                </font></Button>
-            <Button fx:id="btnEliminar" layoutX="676.0" layoutY="329.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="49.0" prefWidth="107.0" text="Eliminar">
+            <Button fx:id="btnEliminar" layoutX="676.0" layoutY="329.0" mnemonicParsing="false" onAction="#eliminarVehiculo" prefHeight="49.0" prefWidth="107.0" text="Eliminar">
                <font>
                   <Font name="Monospaced Regular" size="14.0" />
                </font></Button>

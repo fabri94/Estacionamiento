@@ -56,13 +56,7 @@ public class Estacionamiento {
         return seEncontro;
     }
     
-    /*public void modificarVehiculo(Vehiculo v){
-        if(!vehiculos.contains(v)){
-            throw new VehiculoNoEncontradoException("El vehiculo no se encuentra en los registros");
-        }else{
-            
-        }
-    }*/
+    
     
     public List<Vehiculo> getVehiculos(){
         return vehiculos;
