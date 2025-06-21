@@ -15,7 +15,7 @@ public class Estacionamiento {
     private int capacidadMaxima;
 
     public Estacionamiento(){
-        this.capacidadMaxima = 5;
+        this.capacidadMaxima = 2;
         this.vehiculos = new ArrayList<>();
     }
     
@@ -26,10 +26,10 @@ public class Estacionamiento {
     
     public void agregarVehiculo(Vehiculo v){
         if(vehiculos.contains(v)){
-            throw new VehiculoRepetidoException("El vehiculo ya esta registrado en el estacionamiento ");
+            throw new VehiculoRepetidoException("Ya existe un vehículo con la patente: " + v.getPatente());
         }
         if(vehiculos.size()==capacidadMaxima){
-            throw new EstacionamientoLlenoException("No hay mas lugar disponible en el estacionamiento ");
+            throw new EstacionamientoLlenoException("No hay mas lugar disponible en el estacionamiento");
         }
         vehiculos.add(v);
         System.out.println("Vehiculo agregado");

@@ -1,5 +1,6 @@
 package controllers;
 
+import excepciones.EstacionamientoLlenoException;
 import excepciones.VehiculoRepetidoException;
 import java.io.IOException;
 import java.net.URL;
@@ -64,23 +65,36 @@ public class ViewController implements Initializable {
             stage.showAndWait();
             
             Vehiculo resultado = controller.getVehiculo();
-            if(resultado!=null){
+            
+            /*if(resultado!=null){
                 if(vehiculoExistente==null){
-                    if(!estacionamiento.getVehiculos().contains(resultado)){
-                        estacionamiento.agregarVehiculo(resultado);
-                    }else{
-                        System.out.println("Vehiculo ya registrado");
-                    }
+                    estacionamiento.agregarVehiculo(resultado);
+                }
+            }*/
+            
+            if(resultado!=null) 
+            {
+                try{
+                    estacionamiento.agregarVehiculo(resultado);
+                }catch(VehiculoRepetidoException e){
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setTitle("Error");
+                    alerta.setHeaderText("Patente duplicada");
+                    alerta.setContentText("No se puede agregar el vehiculo\n"+resultado.toString()+"\n"+e.getMessage());
+                    alerta.showAndWait();
+                }catch(EstacionamientoLlenoException e){
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setTitle("Error");
+                    alerta.setHeaderText("Estacionamiento lleno");
+                    alerta.setContentText("No se puede agregar el vehiculo\n"+e.getMessage());
+                    alerta.showAndWait();
                 }
             }
             
-            this.refrescarVista();
+            this.actualizarVista();
             
-        }catch(IOException | VehiculoRepetidoException ex){
-            Alert alerta = new Alert(Alert.AlertType.valueOf(ex.getMessage()));
-            alerta.setTitle("Error");
-            alerta.setHeaderText("Error en la carga del vehiculo\n");
-            //alerta.setContentText(resultado.toString());
+        }catch(IOException ex){
+            
         }
     }
     
@@ -95,7 +109,7 @@ public class ViewController implements Initializable {
         if(vehiculo!=null){
             this.abrirFormulario(vehiculo);
         }
-        this.refrescarVista();
+        this.actualizarVista();
     }
     
     @FXML
@@ -104,19 +118,19 @@ public class ViewController implements Initializable {
         if(vehiculo!=null){
             Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
             alerta.setTitle("Confirmar eliminacion");
-            alerta.setHeaderText("¿Esta seguro que desea eliminar este vehiculo?:\n");
+            alerta.setHeaderText("¿Esta seguro que desea eliminar este vehiculo?\n");
             alerta.setContentText(vehiculo.toString());
             
             Optional<ButtonType> resultado = alerta.showAndWait();
             
             if(resultado.isPresent()&&resultado.get()==ButtonType.OK){
                 this.estacionamiento.eliminarVehiculo(vehiculo);
-                this.refrescarVista();
+                this.actualizarVista();
             }
         }
     }
     
-    public void refrescarVista(){
+    public void actualizarVista(){
         this.listViewVehiculos.getItems().clear();
         this.listViewVehiculos.getItems().addAll(estacionamiento.getVehiculos());
     }
