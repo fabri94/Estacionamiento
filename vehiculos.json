@@ -1,0 +1,20 @@
+[
+  {
+    "type": "Camioneta",
+    "capacidadCarga": 60000,
+    "patente": "AABB12",
+    "marca": "Volkswagen",
+    "modelo": "Amarok",
+    "cantidadHoras": 40,
+    "precioPorHora": 4000000.0
+  },
+  {
+    "type": "Auto",
+    "cantidadPuertas": 3,
+    "patente": "AA132B",
+    "marca": "Ford",
+    "modelo": "KA",
+    "cantidadHoras": 3,
+    "precioPorHora": 6000.0
+  }
+]

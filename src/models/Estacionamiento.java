@@ -1,8 +1,6 @@
 package models;
 
-import excepciones.EstacionamientoLlenoException;
-import excepciones.VehiculoNoEncontradoException;
-import excepciones.VehiculoRepetidoException;
+import excepciones.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +34,11 @@ public class Estacionamiento {
     }
     
     public void eliminarVehiculo(Vehiculo v){
-        if(v!=null){
-            if(buscarVehiculo(v.getPatente())){
+        if(v!=null)
+        {
+            if(buscarVehiculo(v.getPatente()))
+            {
                 vehiculos.remove(v);
-            }else{
-                throw new VehiculoNoEncontradoException("El vehiculo no se encuentra en los registros");
             }
         }
     }
@@ -55,8 +53,6 @@ public class Estacionamiento {
         }
         return seEncontro;
     }
-    
-    
     
     public List<Vehiculo> getVehiculos(){
         return vehiculos;

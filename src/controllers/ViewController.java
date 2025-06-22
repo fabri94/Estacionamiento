@@ -2,8 +2,11 @@ package controllers;
 
 import excepciones.EstacionamientoLlenoException;
 import excepciones.VehiculoRepetidoException;
+import interfaces.ISerializableCSV;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,8 +20,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import models.Estacionamiento;
-import models.Vehiculo;
+import models.*;
+import utils.*;
 
 /**
  * FXML Controller class
@@ -40,10 +43,14 @@ public class ViewController implements Initializable {
     
     private Estacionamiento estacionamiento;
     
+    private ProcesadorArchivoCSV<ISerializableCSV> procesador;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         estacionamiento = new Estacionamiento();
+        procesador = new ProcesadorArchivoCSV<>();
+        this.leerArchivoCSV();
     }    
     
     @FXML
@@ -74,23 +81,24 @@ public class ViewController implements Initializable {
             
             if(resultado!=null) 
             {
-                try{
-                    estacionamiento.agregarVehiculo(resultado);
-                }catch(VehiculoRepetidoException e){
-                    Alert alerta = new Alert(Alert.AlertType.ERROR);
-                    alerta.setTitle("Error");
-                    alerta.setHeaderText("Patente duplicada");
-                    alerta.setContentText("No se puede agregar el vehiculo\n"+resultado.toString()+"\n"+e.getMessage());
-                    alerta.showAndWait();
-                }catch(EstacionamientoLlenoException e){
-                    Alert alerta = new Alert(Alert.AlertType.ERROR);
-                    alerta.setTitle("Error");
-                    alerta.setHeaderText("Estacionamiento lleno");
-                    alerta.setContentText("No se puede agregar el vehiculo\n"+e.getMessage());
-                    alerta.showAndWait();
+                if(vehiculoExistente==null){
+                    try{
+                        estacionamiento.agregarVehiculo(resultado);
+                    }catch(VehiculoRepetidoException e){
+                        Alert alerta = new Alert(Alert.AlertType.ERROR);
+                        alerta.setTitle("Error");
+                        alerta.setHeaderText("Patente duplicada");
+                        alerta.setContentText("No se puede agregar el vehiculo\n"+resultado.toString()+"\n"+e.getMessage());
+                        alerta.showAndWait();
+                    }catch(EstacionamientoLlenoException e){
+                        Alert alerta = new Alert(Alert.AlertType.ERROR);
+                        alerta.setTitle("Error");
+                        alerta.setHeaderText("Estacionamiento lleno");
+                        alerta.setContentText("No se puede agregar el vehiculo\n"+e.getMessage());
+                        alerta.showAndWait();
+                    }
                 }
-            }
-            
+            }            
             this.actualizarVista();
             
         }catch(IOException ex){
@@ -133,5 +141,47 @@ public class ViewController implements Initializable {
     public void actualizarVista(){
         this.listViewVehiculos.getItems().clear();
         this.listViewVehiculos.getItems().addAll(estacionamiento.getVehiculos());
+        this.guardarArchivoCSV();
+    }
+    
+    public void guardarArchivoCSV(){
+        List<ISerializableCSV> data = new ArrayList<>();
+        for(Vehiculo vehiculo : this.estacionamiento.getVehiculos()) {
+            if(vehiculo instanceof ISerializableCSV item){
+                data.add(item);
+            }
+        }
+        this.procesador.escribirCSV(data);
+    }
+    
+    public void leerArchivoCSV(){
+        List<String[]> resultado = procesador.leerCSV("datos.csv");
+        System.out.println("Entradas leídas del archivo: " + resultado.size());
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+
+        for(String[] datos : resultado) {
+            Vehiculo vehiculo = null;
+            switch(datos[5]) 
+            {
+                case "Auto" -> vehiculo = new Auto().fromCSV(datos);
+                
+                case "Camioneta" -> vehiculo = new Camioneta().fromCSV(datos);
+                
+                case "Moto" -> vehiculo = new Moto().fromCSV(datos);
+            }
+            if (vehiculo != null) 
+            {
+                vehiculos.add(vehiculo);
+            }
+        }
+        estacionamiento = new Estacionamiento();
+        estacionamiento.getVehiculos().addAll(vehiculos);
+        this.actualizarVista();
+    }
+    
+    public void guardarArchivoJSON(){
+        ArrayList<Vehiculo> data = new ArrayList<>(this.estacionamiento.getVehiculos());
+        SerializadoraJSON.guardar(data, "vehiculos.json");
     }
 }
+

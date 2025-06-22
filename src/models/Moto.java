@@ -1,14 +1,18 @@
 package models;
 
-import interfaces.ICobrable;
+import interfaces.*;
 
 /**
  *
  * @author Fabri
  */
-public class Moto extends Vehiculo implements ICobrable{
+public class Moto extends Vehiculo implements ICobrable, ISerializableCSV{
     private int cilindrada;
-    //private static final int CANTIDAD_COLUMNAS_CSV = 7;
+    
+    //CONSTRUCTOR VACIO PARA PODER USAR EL FROMCSV DESDE VISTA SIN TENER QUE CREAR UNA INSTANCIA DE MOTO PREVIAMENTE 
+    public Moto(){
+        
+    }
     
     public Moto(String patente, String marca, String modelo, int cantidadHoras, double precioPorHora) {
         super(patente, marca, modelo, cantidadHoras, precioPorHora);
@@ -54,15 +58,21 @@ public class Moto extends Vehiculo implements ICobrable{
     public String toCSV(){
         StringBuilder sb = new StringBuilder();
         sb.append(super.toCSV());
-        sb.append("Precio total ").append(this.calcularPrecio()).append(",").append(getClass().getSimpleName());
+        sb.append(getClass().getSimpleName()).append(",");
+        sb.append(this.cilindrada).append(",");
+        sb.append(this.calcularPrecio());
         return sb.toString();
     }
     
-    /*public static Moto fromCSV(String[] columnas){
-        Moto motoLeida = null;
-        if(columnas.length == CANTIDAD_COLUMNAS_CSV){
-            motoLeida = new Moto(columnas[0],columnas[1],columnas[2],Integer.parseInt(columnas[3]),Integer.parseInt(columnas[4]));
-        }
-        return motoLeida;
-    }*/
+    @Override
+    public Moto fromCSV(String[] columnas){
+        String patente = columnas[0];
+        String marca = columnas[1];
+        String modelo = columnas[2];
+        int horas = Integer.parseInt(columnas[3]);
+        double precio = Double.parseDouble(columnas[4]);
+        String tipo = columnas[5];
+        int cilindradaExt = Integer.parseInt(columnas[6]);
+        return new Moto(patente, marca, modelo, horas, precio, cilindradaExt);       
+    }
 }

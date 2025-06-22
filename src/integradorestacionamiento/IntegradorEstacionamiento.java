@@ -1,5 +1,6 @@
 package integradorestacionamiento;
 
+import controllers.ViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,8 +13,7 @@ import javafx.stage.Stage;
 public class IntegradorEstacionamiento extends Application{
 
     public static void main(String[] args) {
-        Application.launch();
-        
+        Application.launch();        
     }
 
     @Override
@@ -22,7 +22,14 @@ public class IntegradorEstacionamiento extends Application{
     
         Scene scene = new Scene(loader.load());
         
+        ViewController controllerVista = loader.getController();
+        
         stage.setScene(scene);
+        
+        stage.setOnCloseRequest(e ->{
+            controllerVista.guardarArchivoCSV();
+            controllerVista.guardarArchivoJSON();
+        });   
         
         stage.show();
     }

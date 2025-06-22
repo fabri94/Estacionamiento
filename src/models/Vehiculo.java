@@ -12,7 +12,10 @@ public class Vehiculo {
     private String modelo;
     private int cantidadHoras;
     private double precioPorHora;
-    //private static final int CANTIDAD_COLUMNAS_CSV = 5;
+    
+    public Vehiculo(){
+        
+    }
     
     public Vehiculo(String patente, String marca, String modelo, int cantidadHoras, double precioPorHora) {
         this.patente = patente;
@@ -96,11 +99,4 @@ public class Vehiculo {
         return sb.toString();
     }
     
-    /*public static Vehiculo fromCSV(String[] columnas){
-        Vehiculo vehiculoLeido = null;
-        if(columnas.length==CANTIDAD_COLUMNAS_CSV){
-            vehiculoLeido = new Vehiculo(columnas[0],columnas[1],columnas[2],Integer.parseInt(columnas[3]),Double.parsedouble(columnas[4]));
-        }
-        return vehiculoLeido;
-    }*/
 }

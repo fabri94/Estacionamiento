@@ -97,20 +97,6 @@ public class FormularioController implements Initializable {
         return this.vehiculo;
     }
     
-    private DatosVehiculoDTO leerFormulario(){
-        
-        String tipo = cbTipo.getValue();
-        String patente = txtPatente.getText();
-        String marca = txtMarca.getText();
-        String modelo = txtModelo.getText();
-        int cantidadDeHoras = Integer.parseInt(txtCantidadDeHoras.getText());
-        int datoExtra = Integer.parseInt(txtDatoExtra.getText());
-        double precio = Double.parseDouble(txtPrecio.getText());
-        
-        return new DatosVehiculoDTO(patente,marca,modelo,cantidadDeHoras,precio,datoExtra,tipo);
-        
-    }
-    
     private Vehiculo modificarVehiculo(String marca, String modelo, int cantidadDeHoras, double precio, String tipo, int datoExtra){
         vehiculo.setMarca(marca);
         vehiculo.setModelo(modelo);
@@ -146,32 +132,45 @@ public class FormularioController implements Initializable {
     }
 
     public void mostrarDatosVehiculo(Vehiculo vehiculoExistente) {
-        try{
-            this.vehiculo = vehiculoExistente;
-            if(vehiculo!=null)
-            {
-                this.txtPatente.setDisable(true);
-                this.txtMarca.setText(vehiculo.getMarca());
-                this.txtModelo.setText(vehiculo.getModelo());
-                this.txtCantidadDeHoras.setText(String.valueOf(vehiculo.getCantidadHoras()));
-                this.txtPrecio.setText(String.valueOf(vehiculo.getPrecioPorHora()));
-                
-                if(vehiculo instanceof Auto a){
-                    this.txtDatoExtra.setText(String.valueOf(a.getCantidadPuertas()));
-                    cbTipo.setValue("AUTO");
-                }
-                if(vehiculo instanceof Camioneta c){
-                    this.txtDatoExtra.setText(String.valueOf(c.getCapacidadCarga()));
-                    cbTipo.setValue("CAMIONETA");
-                }
-                if(vehiculo instanceof Moto m){
-                    this.txtDatoExtra.setText(String.valueOf(m.getCilindrada()));
-                    cbTipo.setValue("MOTO");
-                }
+        this.vehiculo = vehiculoExistente;
+        if(vehiculo!=null)
+        {
+            this.txtPatente.setText(vehiculo.getPatente());
+            this.txtPatente.setFocusTraversable(false);
+            this.txtPatente.setEditable(false);
+            this.txtMarca.setText(vehiculo.getMarca());
+            this.txtModelo.setText(vehiculo.getModelo());
+            this.txtCantidadDeHoras.setText(String.valueOf(vehiculo.getCantidadHoras()));
+            this.txtPrecio.setText(String.valueOf(vehiculo.getPrecioPorHora()));
+
+            if(vehiculo instanceof Auto a){
+                this.txtDatoExtra.setText(String.valueOf(a.getCantidadPuertas()));
+                cbTipo.setValue("AUTO");
             }
-        }catch(Exception e)
-        {        
+            if(vehiculo instanceof Camioneta c){
+                this.txtDatoExtra.setText(String.valueOf(c.getCapacidadCarga()));
+                cbTipo.setValue("CAMIONETA");
+            }
+            if(vehiculo instanceof Moto m){
+                this.txtDatoExtra.setText(String.valueOf(m.getCilindrada()));
+                cbTipo.setValue("MOTO");
+            }
         }
     }
     
+    /*
+    private DatosVehiculoDTO leerFormulario(){
+        
+        String tipo = cbTipo.getValue();
+        String patente = txtPatente.getText();
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        int cantidadDeHoras = Integer.parseInt(txtCantidadDeHoras.getText());
+        int datoExtra = Integer.parseInt(txtDatoExtra.getText());
+        double precio = Double.parseDouble(txtPrecio.getText());
+        
+        return new DatosVehiculoDTO(patente,marca,modelo,cantidadDeHoras,precio,datoExtra,tipo);
+        
+    }
+    */
 }

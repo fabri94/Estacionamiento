@@ -1,14 +1,18 @@
 package models;
 
-import interfaces.ICobrable;
+import interfaces.*;
 
 /**
  *
  * @author Fabri
  */
-public class Camioneta extends Vehiculo implements ICobrable{
+public class Camioneta extends Vehiculo implements ICobrable, ISerializableCSV{
     private int capacidadCarga;
-    //private static final int CANTIDAD_COLUMNAS_CSV = 7; 
+    
+    public Camioneta(){
+        
+    }
+    
     public Camioneta(String patente, String marca, String modelo, int cantidadHoras, double precioPorHora) {
         super(patente, marca, modelo, cantidadHoras, precioPorHora);
     }
@@ -25,7 +29,6 @@ public class Camioneta extends Vehiculo implements ICobrable{
     public void setCapacidadCarga(int capacidadCarga) {
         this.capacidadCarga = capacidadCarga;
     }
-    
     
 
     @Override
@@ -54,15 +57,21 @@ public class Camioneta extends Vehiculo implements ICobrable{
     public String toCSV(){
         StringBuilder sb = new StringBuilder();
         sb.append(super.toCSV());
-        sb.append("Precio total ").append(this.calcularPrecio()).append(",").append(getClass().getSimpleName());
+        sb.append(getClass().getSimpleName()).append(",");
+        sb.append(this.capacidadCarga).append(",");
+        sb.append(this.calcularPrecio());
         return sb.toString();
     }
     
-    /*public static Camioneta fromCSV(String[] columnas){
-        Camioneta camionetaLeida = null;
-        if(columnas.length==5){
-            camionetaLeida = new Camioneta(columnas[0],columnas[1],columnas[2],Integer.parseInt(columnas[3]),Integer.parseInt(columnas[4]));
-        }
-        return camionetaLeida;
-    }*/
+    @Override
+    public Camioneta fromCSV(String[] columnas){
+        String patente = columnas[0];
+        String marca = columnas[1];
+        String modelo = columnas[2];
+        int horas = Integer.parseInt(columnas[3]);
+        double precio = Double.parseDouble(columnas[4]);
+        String tipo = columnas[5];
+        int capacidad = Integer.parseInt(columnas[6]);
+        return new Camioneta(patente, marca, modelo, horas, precio, capacidad);       
+    }
 }
