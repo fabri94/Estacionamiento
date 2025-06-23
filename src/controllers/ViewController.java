@@ -85,17 +85,7 @@ public class ViewController implements Initializable {
                     try{
                         estacionamiento.agregarVehiculo(resultado);
                     }catch(VehiculoRepetidoException e){
-                        Alert alerta = new Alert(Alert.AlertType.ERROR);
-                        alerta.setTitle("Error");
-                        alerta.setHeaderText("Patente duplicada");
-                        alerta.setContentText("No se puede agregar el vehiculo\n"+resultado.toString()+"\n"+e.getMessage());
-                        alerta.showAndWait();
-                    }catch(EstacionamientoLlenoException e){
-                        Alert alerta = new Alert(Alert.AlertType.ERROR);
-                        alerta.setTitle("Error");
-                        alerta.setHeaderText("Estacionamiento lleno");
-                        alerta.setContentText("No se puede agregar el vehiculo\n"+e.getMessage());
-                        alerta.showAndWait();
+                        mostrarAlerta("ERROR","Patente duplicada","No se puede agregar el vehiculo\n"+resultado.toString()+"\n"+e.getMessage());
                     }
                 }
             }            
@@ -108,7 +98,22 @@ public class ViewController implements Initializable {
     
     @FXML
     public void agregarVehiculo(ActionEvent e){
-        this.abrirFormulario(null);
+        try{
+            if(estacionamiento.estaLleno()){
+                throw new EstacionamientoLlenoException("No hay lugar disponible en el estacionamiento");
+            }
+            this.abrirFormulario(null);
+        }catch(EstacionamientoLlenoException ex){
+            mostrarAlerta("ERROR", "Estacionamiento lleno" ,ex.getMessage());
+        }
+    }
+    
+    private void mostrarAlerta(String titulo, String header, String mensaje){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(header);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
     
     @FXML

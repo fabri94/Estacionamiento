@@ -22,6 +22,10 @@ public class Estacionamiento {
         this.capacidadMaxima = capacidadMaxima;
     }
     
+    public int getCapacidadMaxima(){
+        return capacidadMaxima;
+    }
+    
     public void agregarVehiculo(Vehiculo v){
         if(vehiculos.contains(v)){
             throw new VehiculoRepetidoException("Ya existe un vehículo con la patente: " + v.getPatente());
@@ -43,6 +47,7 @@ public class Estacionamiento {
         }
     }
     
+    
     private boolean buscarVehiculo(String patente){
         boolean seEncontro = false;
         for (Vehiculo vehiculo : vehiculos) {
@@ -56,5 +61,9 @@ public class Estacionamiento {
     
     public List<Vehiculo> getVehiculos(){
         return vehiculos;
+    }
+    
+    public boolean estaLleno(){
+        return this.vehiculos.size() == capacidadMaxima;
     }
 }
