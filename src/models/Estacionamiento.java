@@ -21,20 +21,13 @@ public class Estacionamiento {
         this();
         this.capacidadMaxima = capacidadMaxima;
     }
-    
-    public int getCapacidadMaxima(){
-        return capacidadMaxima;
-    }
-    
+        
     public void agregarVehiculo(Vehiculo v){
         if(vehiculos.contains(v)){
             throw new VehiculoRepetidoException("Ya existe un vehículo con la patente: " + v.getPatente());
         }
-        if(vehiculos.size()==capacidadMaxima){
-            throw new EstacionamientoLlenoException("No hay mas lugar disponible en el estacionamiento");
-        }
         vehiculos.add(v);
-        System.out.println("Vehiculo agregado");
+        //System.out.println("Vehiculo agregado");
     }
     
     public void eliminarVehiculo(Vehiculo v){
@@ -46,7 +39,6 @@ public class Estacionamiento {
             }
         }
     }
-    
     
     private boolean buscarVehiculo(String patente){
         boolean seEncontro = false;

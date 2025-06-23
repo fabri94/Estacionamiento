@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><element><id>UMLClass</id><coordinates><x>486</x><y>36</y><w>504</w><h>333</h></coordinates><panel_attributes>/Vehiculo/
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>334</x><y>9</y><w>448</w><h>280</h></coordinates><panel_attributes>/Vehiculo/
 --
 -patente:String
 -marca:String
@@ -6,6 +6,7 @@
 -cantidadHoras:int
 -precioPorHora:double
 --
++Vehiculo()
 +Vehiculo(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double)
 
 +getPatente():String
@@ -13,59 +14,59 @@
 +getModelo():String
 +getCantidadHoras():int
 +getPrecioPorHora():double
-
 +setMarca(marca:String):void
 +setModelo(modelo:String):void
 +setCantidadHoras(cantidadHoras:int):void
 +setPrecioPorHora(precioPorHora:double):void
-
 +equals(obj:Object):boolean
 +toString():String
-
-+getVehiculo():Vehiculo</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>486</x><y>585</y><w>585</w><h>171</h></coordinates><panel_attributes>Auto
++toCSV():String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>497</y><w>520</w><h>160</h></coordinates><panel_attributes>Auto
 --
 -cantidadPuertas:int
 --
 +Auto(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double, cantidadPuertas:int)
-
++Auto(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double)
++Auto()
 +getCantidadPuertas():int
 +setCantidadPuertas(cantidadPuertas:int):void
-
-+toString():String
-
 +calcularPrecio():double
-+getIncremento():double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>486</x><y>414</y><w>612</w><h>162</h></coordinates><panel_attributes>Camioneta
++getIncremento():double
++toString():String
++toCSV():String
++fromCSV():Auto</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>321</y><w>544</w><h>168</h></coordinates><panel_attributes>Camioneta
 --
 -capacidadCarga:int
 --
 +Camioneta(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double, capacidadCarga:int)
++Camioneta(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double)
++Camioneta()
 
 +getCapacidadCarga():int
 +setCapacidadCarga(capacidadCarga:int):void
-
-+toString():String
-
 +calcularPrecio():double
-+getIncremento():double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>495</x><y>765</y><w>585</w><h>162</h></coordinates><panel_attributes>Moto
++getIncremento():double
++toString():String
++toCSV():String
++fromCSV():Camioneta</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>334</x><y>665</y><w>520</w><h>160</h></coordinates><panel_attributes>Moto
 --
 -cilindrada:int
 --
-+Camioneta(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double, cilindrada:int)
-
++Moto(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double, cilindrada:int)
++Moto(patente:String, marca:String, modelo:String, cantidadHoras:int, precioPorHora:double)
++Moto()
 +getCilindrada():int
 +setCilindrada(cilindrada:int):void
-
-+toString():String
-
-/+calcularPrecio():double/
 +calcularPrecio():double
-+getIncremento():double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>144</x><y>621</y><w>234</w><h>63</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
++getIncremento():double
++toString():String
++toCSV():String
++fromCSV():Moto</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>78</x><y>529</y><w>208</w><h>56</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
 ICobrable
 --
 /+calcularPrecio():double/
-/+getIncremento():double/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>666</x><y>360</y><w>27</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>981</x><y>351</y><w>153</w><h>351</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;10;150;370;100;370</additional_attributes></element><element><id>Relation</id><coordinates><x>981</x><y>324</y><w>198</w><h>513</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;200;10;200;550;110;550</additional_attributes></element><element><id>Relation</id><coordinates><x>369</x><y>495</y><w>135</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;140;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>369</x><y>648</y><w>135</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;130;10</additional_attributes></element><element><id>Relation</id><coordinates><x>369</x><y>675</y><w>144</w><h>216</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;140;220</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1422</x><y>72</y><w>234</w><h>45</h></coordinates><panel_attributes>VehiculoRepetidoException
+/+getIncremento():double/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>494</x><y>281</y><w>24</w><h>56</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>774</x><y>257</y><w>136</w><h>344</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;150;10;150;410;100;410</additional_attributes></element><element><id>Relation</id><coordinates><x>774</x><y>225</y><w>168</w><h>504</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;10;190;610;100;610</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1142</x><y>65</y><w>208</w><h>40</h></coordinates><panel_attributes>VehiculoRepetidoException
 --
-+VehiculoRepetidoException(msj:String)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1062</x><y>63</y><w>279</w><h>198</h></coordinates><panel_attributes>Estacionamiento
++VehiculoRepetidoException(msj:String)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>846</x><y>49</y><w>248</w><h>160</h></coordinates><panel_attributes>Estacionamiento
 --
 -capacidad:int
 -vehiculos:List&lt;Vehiculo&gt;
@@ -74,12 +75,16 @@ ICobrable
 +Estacionamiento(capacidad:int)
 
 +agregarVehiculo(vehiculo:Vehiculo):void
-+modificarRegistro(vehiculo:Vehiculo):void
-+eliminarRegistro(vehiculo:Vehiculo):void
-
--buscarVehiculo(patente:String):boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1260</x><y>297</y><w>324</w><h>54</h></coordinates><panel_attributes>ProcesadorArchivo
++eliminarVehiculo(vehiculo:Vehiculo):void
+-buscarVehiculo(patente:String):boolean
++estaLleno():boolean
++getVehiculos():List&lt;Vehiculo&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>782</x><y>849</y><w>288</w><h>48</h></coordinates><panel_attributes>ProcesadorArchivoCSV
 --
-+leer(path:String):ArrayList&lt;Vehiculo&gt;
-+escribir(path:String, vehiculos:ArrayList&lt;Vehiculo&gt;):void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1422</x><y>135</y><w>243</w><h>45</h></coordinates><panel_attributes>EstacionamientoLlenoException
++leerCSV(path:String) : List&lt;String[]&gt;
++escribirCSV(lista:List&lt;T&gt;) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1142</x><y>137</y><w>216</w><h>40</h></coordinates><panel_attributes>EstacionamientoLlenoException
 --
-+EstacionamientoLlenoException(msj:String)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>972</x><y>225</y><w>108</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1116</x><y>252</y><w>162</w><h>99</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>160;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1332</x><y>90</y><w>108</w><h>36</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>100;10;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>1332</x><y>144</y><w>108</w><h>45</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>100;10;10;30</additional_attributes></element></diagram>
++EstacionamientoLlenoException(msj:String)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>766</x><y>137</y><w>96</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>494</x><y>833</y><w>208</w><h>64</h></coordinates><panel_attributes>&lt;&lt;Interface&gt;&gt;
+ISerializableCSV
+--
+/+toCSV():String/
+/+fromCSV(datos:String[]) :ISerializableCSV/</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1086</x><y>81</y><w>72</w><h>40</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>70;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>694</x><y>817</y><w>72</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;30;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>54</x><y>345</y><w>456</w><h>544</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>550;660;10;660;10;10;350;10</additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>537</y><w>80</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;80;10</additional_attributes></element><element><id>Relation</id><coordinates><x>278</x><y>601</y><w>232</w><h>256</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>270;300;10;300;10;10;70;10</additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>409</y><w>160</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;150;180;10</additional_attributes></element><element><id>Relation</id><coordinates><x>166</x><y>577</y><w>184</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;210;130</additional_attributes></element><element><id>Relation</id><coordinates><x>694</x><y>865</y><w>104</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;110;10</additional_attributes></element></diagram>

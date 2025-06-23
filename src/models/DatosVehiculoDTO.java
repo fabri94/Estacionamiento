@@ -51,6 +51,4 @@ public class DatosVehiculoDTO {
         return tipo;
     }
     
-    
-    
 }

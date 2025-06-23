@@ -31,8 +31,6 @@ public class Auto extends Vehiculo implements ICobrable, ISerializableCSV{
         return cantidadPuertas;
     }
     
-    
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

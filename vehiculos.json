@@ -1,14 +1,5 @@
 [
   {
-    "type": "Camioneta",
-    "capacidadCarga": 60000,
-    "patente": "AABB12",
-    "marca": "Volkswagen",
-    "modelo": "Amarok",
-    "cantidadHoras": 10,
-    "precioPorHora": 4000.0
-  },
-  {
     "type": "Auto",
     "cantidadPuertas": 3,
     "patente": "AA12BC",
@@ -16,5 +7,14 @@
     "modelo": "FOCUS",
     "cantidadHoras": 4,
     "precioPorHora": 5.0
+  },
+  {
+    "type": "Auto",
+    "cantidadPuertas": 3,
+    "patente": "aa12ui",
+    "marca": "LAMBORGHINI",
+    "modelo": "DIABLO",
+    "cantidadHoras": 5,
+    "precioPorHora": 5000.0
   }
 ]
